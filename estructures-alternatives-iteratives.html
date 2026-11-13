@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercicis de programació - Estructures alternatives i iteratives</title>
+</head>
+<body>
+<h1>Exercicis de programació</h1>
+<p>Estructures alternatives i iteratives. Els resultats es mostren a la consola del navegador (F12 &rarr; Consola).</p>
+
+<script>
+/*
+    =====================================================================
+    PROGRAMACIÓ D'APLICACIONS A INTERNET (UAB) · Arnau Sánchez
+    Exercicis de programació: estructures alternatives i iteratives
+    =====================================================================
+    Tots els exercicis són en aquest fitxer, cadascun comentat.
+    Per executar-ne un, esborra les dues línies marcades amb
+    "INICI EXERCICI X.Y" i "FI EXERCICI X.Y" (són les que obren i tanquen
+    el comentari), obre aquest fitxer al navegador i mira la consola (F12).
+    Cada exercici va dins de claus { } perquè les variables d'un
+    exercici no xoquin amb les d'un altre.
+    Els números llegits amb prompt es converteixen amb Number(), perquè
+    prompt sempre retorna text.
+    =====================================================================
+*/
+
+
+/* ======================= CONDICIONAL SIMPLE: if ======================= */
+
+/* ----- EXERCICI 13.1 -----------------------------------------------
+   Llegeix un número i, si és més petit que zero, diu que és negatiu.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 13.1  (esborra aquesta línia per executar-lo)
+{
+    let n = Number(prompt("Introdueix un número"));
+    if (n < 0) {
+        console.log("El número llegit és negatiu");
+    }
+}
+FI EXERCICI 13.1  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 13.2 -----------------------------------------------
+   Llegeix un número i, si és parell, ho diu.
+   Un número és parell si el residu de dividir-lo per 2 és 0.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 13.2  (esborra aquesta línia per executar-lo)
+{
+    let n = Number(prompt("Introdueix un número"));
+    if (n % 2 == 0) {
+        console.log("El número llegit és parell");
+    }
+}
+FI EXERCICI 13.2  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 13.3 -----------------------------------------------
+   Diu si el número és parell o senar fent servir un if per cada cas.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 13.3  (esborra aquesta línia per executar-lo)
+{
+    let n = Number(prompt("Introdueix un número"));
+    if (n % 2 == 0) {
+        console.log("El número llegit és parell");
+    }
+    if (n % 2 != 0) {
+        console.log("El número llegit és senar");
+    }
+}
+FI EXERCICI 13.3  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 13.4 -----------------------------------------------
+   Escriu el més gran de dos números fent servir dos if.
+   (Si són iguals, no s'escriu cap dels dos missatges; s'avisa a part.)
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 13.4  (esborra aquesta línia per executar-lo)
+{
+    let a = Number(prompt("Introdueix el primer número"));
+    let b = Number(prompt("Introdueix el segon número"));
+    if (a > b) {
+        console.log("El més gran és " + a);
+    }
+    if (b > a) {
+        console.log("El més gran és " + b);
+    }
+    if (a == b) {
+        console.log("Els dos números són iguals");
+    }
+}
+FI EXERCICI 13.4  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 13.5 -----------------------------------------------
+   Escriu el més gran de tres números fent servir tres if.
+   Cada if comprova si un número és més gran o igual que els altres dos
+   (amb >= perquè, si n'hi ha de repetits, també surti algun resultat).
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 13.5  (esborra aquesta línia per executar-lo)
+{
+    let a = Number(prompt("Introdueix el primer número"));
+    let b = Number(prompt("Introdueix el segon número"));
+    let c = Number(prompt("Introdueix el tercer número"));
+    let gran;
+    if (a >= b && a >= c) {
+        gran = a;
+    }
+    if (b >= a && b >= c) {
+        gran = b;
+    }
+    if (c >= a && c >= b) {
+        gran = c;
+    }
+    console.log("El més gran és " + gran);
+}
+FI EXERCICI 13.5  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 13.6 -----------------------------------------------
+   Escriu el nom del mes (1 a 12) fent servir només if.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 13.6  (esborra aquesta línia per executar-lo)
+{
+    let mes = Number(prompt("Introdueix un número de mes (1-12)"));
+    if (mes == 1)  { console.log("Gener"); }
+    if (mes == 2)  { console.log("Febrer"); }
+    if (mes == 3)  { console.log("Març"); }
+    if (mes == 4)  { console.log("Abril"); }
+    if (mes == 5)  { console.log("Maig"); }
+    if (mes == 6)  { console.log("Juny"); }
+    if (mes == 7)  { console.log("Juliol"); }
+    if (mes == 8)  { console.log("Agost"); }
+    if (mes == 9)  { console.log("Setembre"); }
+    if (mes == 10) { console.log("Octubre"); }
+    if (mes == 11) { console.log("Novembre"); }
+    if (mes == 12) { console.log("Desembre"); }
+    if (mes < 1 || mes > 12) { console.log("Aquest número de mes no existeix"); }
+}
+FI EXERCICI 13.6  (esborra aquesta línia per executar-lo) */
+
+
+/* ===================== CONDICIONAL DOBLE: if-else ===================== */
+
+/* ----- EXERCICI 14.1 -----------------------------------------------
+   Negatiu si és més petit que zero; positiu en cas contrari.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 14.1  (esborra aquesta línia per executar-lo)
+{
+    let n = Number(prompt("Introdueix un número"));
+    if (n < 0) {
+        console.log("El número llegit és negatiu");
+    } else {
+        console.log("El número llegit és positiu");
+    }
+}
+FI EXERCICI 14.1  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 14.2 -----------------------------------------------
+   Parell o senar amb if-else.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 14.2  (esborra aquesta línia per executar-lo)
+{
+    let n = Number(prompt("Introdueix un número"));
+    if (n % 2 == 0) {
+        console.log("El número llegit és parell");
+    } else {
+        console.log("El número llegit és senar");
+    }
+}
+FI EXERCICI 14.2  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 14.3 -----------------------------------------------
+   El més gran de dos números amb una sola instrucció if-else.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 14.3  (esborra aquesta línia per executar-lo)
+{
+    let a = Number(prompt("Introdueix el primer número"));
+    let b = Number(prompt("Introdueix el segon número"));
+    if (a > b) {
+        console.log("El més gran és " + a);
+    } else {
+        console.log("El més gran és " + b);
+    }
+}
+FI EXERCICI 14.3  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 14.4 -----------------------------------------------
+   El més gran de tres números: primer mira si és el primer; si no,
+   si és el segon; si tampoc, ha de ser el tercer.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 14.4  (esborra aquesta línia per executar-lo)
+{
+    let a = Number(prompt("Introdueix el primer número"));
+    let b = Number(prompt("Introdueix el segon número"));
+    let c = Number(prompt("Introdueix el tercer número"));
+    if (a >= b && a >= c) {
+        console.log("El més gran és " + a);
+    } else if (b >= c) {
+        console.log("El més gran és " + b);
+    } else {
+        console.log("El més gran és " + c);
+    }
+}
+FI EXERCICI 14.4  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 14.5 -----------------------------------------------
+   Escriu els tres números ordenats de petit a gran.
+   Es busquen el més petit i el més gran; el que queda és el del mig.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 14.5  (esborra aquesta línia per executar-lo)
+{
+    let a = Number(prompt("Introdueix el primer número"));
+    let b = Number(prompt("Introdueix el segon número"));
+    let c = Number(prompt("Introdueix el tercer número"));
+    let petit, mig, gran;
+
+    if (a <= b && a <= c) {
+        petit = a;
+        if (b <= c) { mig = b; gran = c; } else { mig = c; gran = b; }
+    } else if (b <= a && b <= c) {
+        petit = b;
+        if (a <= c) { mig = a; gran = c; } else { mig = c; gran = a; }
+    } else {
+        petit = c;
+        if (a <= b) { mig = a; gran = b; } else { mig = b; gran = a; }
+    }
+    console.log("Ordenats: " + petit + ", " + mig + ", " + gran);
+}
+FI EXERCICI 14.5  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 14.6 -----------------------------------------------
+   Control d'alcoholèmia: pot conduir si té carnet I la prova ha donat
+   un valor inferior a 0.25.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 14.6  (esborra aquesta línia per executar-lo)
+{
+    let carnet = prompt("Té carnet de conduir? (s/n)");
+    let alcohol = Number(prompt("Valor de la prova d'alcoholèmia"));
+    if (carnet == "s" && alcohol < 0.25) {
+        console.log("Sí, pot conduir");
+    } else {
+        console.log("No pot conduir");
+    }
+}
+FI EXERCICI 14.6  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 13.7 -----------------------------------------------
+   (A l'enunciat surt numerat 13.7, però és a l'apartat if-else.)
+   Resta al número més gran el més petit.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 13.7  (esborra aquesta línia per executar-lo)
+{
+    let a = Number(prompt("Introdueix el primer número"));
+    let b = Number(prompt("Introdueix el segon número"));
+    let resta;
+    if (a > b) {
+        resta = a - b;
+    } else {
+        resta = b - a;
+    }
+    console.log("El més gran menys el més petit és " + resta);
+}
+FI EXERCICI 13.7  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 14.8 -----------------------------------------------
+   Compra a una web: si la quantitat és 30 € o més, el transport és
+   gratis; si és menys de 30 €, se sumen 4.95 € d'enviament.
+   (L'enunciat diu "el cost total és de 30€" en el primer cas; s'ha
+   interpretat que el cost total és la quantitat introduïda, sense
+   enviament, ja que el transport és gratis.)
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 14.8  (esborra aquesta línia per executar-lo)
+{
+    let quantitat = Number(prompt("Quantitat a pagar (€)"));
+    if (quantitat >= 30) {
+        console.log("El cost total és de " + quantitat + " € perquè el transport és gratis");
+    } else {
+        let total = quantitat + 4.95;
+        console.log("El cost total és de " + total.toFixed(2) + " € (inclou 4.95 € d'enviament)");
+    }
+}
+FI EXERCICI 14.8  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 14.9 -----------------------------------------------
+   Gelateria amb if-else.
+   Conus (c) 3.45 €, terrina (t) 3.95 €.
+   Vainilla o Xocolata: +0 | Turró, Menta o Oreo: +0.5 |
+   Crema, Gerds o Ametlles: +1.
+   Si alguna dada és incorrecta: "Error dades mal introduïdes".
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 14.9  (esborra aquesta línia per executar-lo)
+{
+    let tipus = prompt("Conus (c) o terrina (t)?").toLowerCase();
+    let sabor = prompt("Sabor? (vainilla, xocolata, turró, menta, oreo, crema, gerds, ametlles)").toLowerCase();
+    let preu;
+    let error = false;
+
+    if (tipus == "c") {
+        preu = 3.45;
+    } else if (tipus == "t") {
+        preu = 3.95;
+    } else {
+        error = true;
+    }
+
+    if (sabor == "vainilla" || sabor == "xocolata") {
+        // no s'afegeix res
+    } else if (sabor == "turró" || sabor == "turro" || sabor == "menta" || sabor == "oreo") {
+        preu = preu + 0.5;
+    } else if (sabor == "crema" || sabor == "gerds" || sabor == "ametlles") {
+        preu = preu + 1;
+    } else {
+        error = true;
+    }
+
+    if (error) {
+        console.log("Error dades mal introduïdes");
+    } else {
+        console.log("Preu final: " + preu.toFixed(2) + " €");
+    }
+}
+FI EXERCICI 14.9  (esborra aquesta línia per executar-lo) */
+
+
+/* ===================== CONDICIONAL MÚLTIPLE: switch ===================== */
+
+/* ----- EXERCICI 15.1 -----------------------------------------------
+   Nom del mes (1 a 12) amb switch.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 15.1  (esborra aquesta línia per executar-lo)
+{
+    let mes = Number(prompt("Introdueix un número de mes (1-12)"));
+    switch (mes) {
+        case 1:  console.log("Gener");    break;
+        case 2:  console.log("Febrer");   break;
+        case 3:  console.log("Març");     break;
+        case 4:  console.log("Abril");    break;
+        case 5:  console.log("Maig");     break;
+        case 6:  console.log("Juny");     break;
+        case 7:  console.log("Juliol");   break;
+        case 8:  console.log("Agost");    break;
+        case 9:  console.log("Setembre"); break;
+        case 10: console.log("Octubre");  break;
+        case 11: console.log("Novembre"); break;
+        case 12: console.log("Desembre"); break;
+        default: console.log("Aquest número de mes no existeix");
+    }
+}
+FI EXERCICI 15.1  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 15.2 -----------------------------------------------
+   Gelateria fent servir switch per calcular l'increment pel sabor.
+   Els case sense break s'agrupen: tots executen el mateix codi.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 15.2  (esborra aquesta línia per executar-lo)
+{
+    let tipus = prompt("Conus (c) o terrina (t)?").toLowerCase();
+    let sabor = prompt("Sabor? (vainilla, xocolata, turró, menta, oreo, crema, gerds, ametlles)").toLowerCase();
+    let preu;
+    let error = false;
+
+    if (tipus == "c") {
+        preu = 3.45;
+    } else if (tipus == "t") {
+        preu = 3.95;
+    } else {
+        error = true;
+    }
+
+    switch (sabor) {
+        case "vainilla":
+        case "xocolata":
+            break;                       // no s'afegeix res
+        case "turró":
+        case "turro":
+        case "menta":
+        case "oreo":
+            preu = preu + 0.5;
+            break;
+        case "crema":
+        case "gerds":
+        case "ametlles":
+            preu = preu + 1;
+            break;
+        default:
+            error = true;
+    }
+
+    if (error) {
+        console.log("Error dades mal introduïdes");
+    } else {
+        console.log("Preu final: " + preu.toFixed(2) + " €");
+    }
+}
+FI EXERCICI 15.2  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 15.3 -----------------------------------------------
+   Dia laborable o festiu a partir de la lletra del dia.
+   l dilluns, m dimarts, x dimecres, j dijous, v divendres,
+   s dissabte, d diumenge.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 15.3  (esborra aquesta línia per executar-lo)
+{
+    let dia = prompt("Lletra del dia (l, m, x, j, v, s, d)").toLowerCase();
+    switch (dia) {
+        case "l":
+        case "m":
+        case "x":
+        case "j":
+        case "v":
+            console.log("És un dia laborable");
+            break;
+        case "s":
+        case "d":
+            console.log("És un dia festiu");
+            break;
+        default:
+            console.log("Aquesta lletra no correspon a cap dia");
+    }
+}
+FI EXERCICI 15.3  (esborra aquesta línia per executar-lo) */
+
+
+/* ============================ BUCLES: for ============================ */
+
+/* ----- EXERCICI 16.1 -----------------------------------------------
+   Escriu 10 cops "Estem fent bucles" amb for.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 16.1  (esborra aquesta línia per executar-lo)
+{
+    for (let i = 1; i <= 10; i++) {
+        console.log("Estem fent bucles");
+    }
+}
+FI EXERCICI 16.1  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 16.2 -----------------------------------------------
+   Escriu els números del 5 al 20 amb for.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 16.2  (esborra aquesta línia per executar-lo)
+{
+    for (let i = 5; i <= 20; i++) {
+        console.log(i);
+    }
+}
+FI EXERCICI 16.2  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 16.3 -----------------------------------------------
+   Suma de tots els números entre 1 i N.
+   Exemple: N = 5 -> 1 + 2 + 3 + 4 + 5 = 15
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 16.3  (esborra aquesta línia per executar-lo)
+{
+    let n = Number(prompt("Introdueix N"));
+    let suma = 0;
+    for (let i = 1; i <= n; i++) {
+        suma = suma + i;
+    }
+    console.log("La suma de 1 a " + n + " és " + suma);
+}
+FI EXERCICI 16.3  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 16.4 -----------------------------------------------
+   Factorial de N: multiplicació de tots els números entre 1 i N.
+   Exemple: 5! = 1 x 2 x 3 x 4 x 5 = 120
+   (El producte comença a 1, no a 0, perquè si no sempre donaria 0.)
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 16.4  (esborra aquesta línia per executar-lo)
+{
+    let n = Number(prompt("Introdueix N"));
+    let factorial = 1;
+    for (let i = 1; i <= n; i++) {
+        factorial = factorial * i;
+    }
+    console.log("El factorial de " + n + " és " + factorial);
+}
+FI EXERCICI 16.4  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 16.5 -----------------------------------------------
+   Suma de tots els números entre N i M (tots dos inclosos), N < M.
+   Exemple: N = 3, M = 6 -> 3 + 4 + 5 + 6 = 18
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 16.5  (esborra aquesta línia per executar-lo)
+{
+    let n = Number(prompt("Introdueix N"));
+    let m = Number(prompt("Introdueix M (més gran que N)"));
+    let suma = 0;
+    for (let i = n; i <= m; i++) {
+        suma = suma + i;
+    }
+    console.log("La suma de " + n + " a " + m + " és " + suma);
+}
+FI EXERCICI 16.5  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 16.6 -----------------------------------------------
+   Suma dels números parells entre 2 i N.
+   El bucle comença a 2 i avança de 2 en 2.
+   Exemple: N = 10 -> 2 + 4 + 6 + 8 + 10 = 30
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 16.6  (esborra aquesta línia per executar-lo)
+{
+    let n = Number(prompt("Introdueix N"));
+    let suma = 0;
+    for (let i = 2; i <= n; i = i + 2) {
+        suma = suma + i;
+    }
+    console.log("La suma dels parells de 2 a " + n + " és " + suma);
+}
+FI EXERCICI 16.6  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 16.7 -----------------------------------------------
+   Taula de multiplicar de N (de l'1 al 10).
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 16.7  (esborra aquesta línia per executar-lo)
+{
+    let n = Number(prompt("Introdueix N"));
+    for (let i = 1; i <= 10; i++) {
+        console.log(n + " x " + i + " = " + (n * i));
+    }
+}
+FI EXERCICI 16.7  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 16.8 -----------------------------------------------
+   Escriu els números de N a 1 en ordre descendent.
+   Què passa si N < 1? No s'escriu res: la condició i >= 1 ja és falsa
+   al principi i el for no fa ni una volta.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 16.8  (esborra aquesta línia per executar-lo)
+{
+    let n = Number(prompt("Introdueix N"));
+    for (let i = n; i >= 1; i--) {
+        console.log(i);
+    }
+}
+FI EXERCICI 16.8  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 16.9 -----------------------------------------------
+   Escriu N asteriscos en una sola línia.
+   Es van afegint a una cadena i s'escriu al final.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 16.9  (esborra aquesta línia per executar-lo)
+{
+    let n = Number(prompt("Introdueix N"));
+    let linia = "";
+    for (let i = 1; i <= n; i++) {
+        linia = linia + "*";
+    }
+    console.log(linia);
+}
+FI EXERCICI 16.9  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 16.10 ----------------------------------------------
+   Triangle d'asteriscos: la fila 1 té 1 asterisc, la fila 2 en té 2...
+   fins a la fila N. Cada volta afegeix un asterisc a la línia i
+   l'escriu.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 16.10  (esborra aquesta línia per executar-lo)
+{
+    let n = Number(prompt("Introdueix N"));
+    let linia = "";
+    for (let i = 1; i <= n; i++) {
+        linia = linia + "*";
+        console.log(linia);
+    }
+}
+FI EXERCICI 16.10  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 16.11 ----------------------------------------------
+   Sèrie amb N repetit: N = 2, M = 5 -> 2 22 222 2222 22222
+   Suma: 2 + 22 + 222 + 2222 + 22222 = 24690
+   Cada terme s'obté multiplicant l'anterior per 10 i sumant-hi N
+   (2 -> 22 -> 222...).
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 16.11  (esborra aquesta línia per executar-lo)
+{
+    let n = Number(prompt("Introdueix N (la xifra)"));
+    let m = Number(prompt("Introdueix M (quants termes)"));
+    let terme = 0;
+    let suma = 0;
+    let serie = "";
+    for (let i = 1; i <= m; i++) {
+        terme = terme * 10 + n;
+        suma = suma + terme;
+        serie = serie + terme + " ";
+    }
+    console.log(serie);
+    console.log("La suma de la sèrie és: " + suma);
+}
+FI EXERCICI 16.11  (esborra aquesta línia per executar-lo) */
+
+
+/* =========================== BUCLES: while =========================== */
+
+/* ----- EXERCICI 17.1 -----------------------------------------------
+   Escriu 10 cops "Estem fent bucles" amb while.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 17.1  (esborra aquesta línia per executar-lo)
+{
+    let i = 1;
+    while (i <= 10) {
+        console.log("Estem fent bucles");
+        i++;
+    }
+}
+FI EXERCICI 17.1  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 17.2 -----------------------------------------------
+   Escriu els números del 5 al 20 amb while.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 17.2  (esborra aquesta línia per executar-lo)
+{
+    let i = 5;
+    while (i <= 20) {
+        console.log(i);
+        i++;
+    }
+}
+FI EXERCICI 17.2  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 17.3 -----------------------------------------------
+   Números de N a 1 amb while.
+   Si N < 1 no s'escriu res: el while comprova la condició abans de
+   fer la primera volta.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 17.3  (esborra aquesta línia per executar-lo)
+{
+    let i = Number(prompt("Introdueix N"));
+    while (i >= 1) {
+        console.log(i);
+        i--;
+    }
+}
+FI EXERCICI 17.3  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 17.4 -----------------------------------------------
+   Seqüència de Fibonacci amb N termes (N = 7 -> 1 1 2 3 5 8 13).
+   Cada terme és la suma dels dos anteriors; els dos primers són 1 i 1.
+   Es guarden els dos últims termes (anterior i actual) i a cada volta
+   es calcula el següent.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 17.4  (esborra aquesta línia per executar-lo)
+{
+    let n = Number(prompt("Quants termes de Fibonacci vols?"));
+    let anterior = 0;
+    let actual = 1;
+    let comptador = 0;
+    let serie = "";
+    while (comptador < n) {
+        serie = serie + actual + " ";
+        let seguent = anterior + actual;
+        anterior = actual;
+        actual = seguent;
+        comptador++;
+    }
+    console.log(serie);
+}
+FI EXERCICI 17.4  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 17.5 -----------------------------------------------
+   Llista N*1, N*2, ..., N*M que s'atura quan un resultat és més gran
+   que 999999 (aquest últim encara s'escriu, com a l'exemple).
+   Exemple: N = 200000, M = 5000 ->
+   200000, 400000, 600000, 800000, 1000000
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 17.5  (esborra aquesta línia per executar-lo)
+{
+    let n = Number(prompt("Introdueix N"));
+    let m = Number(prompt("Introdueix M"));
+    let i = 1;
+    let resultat = 0;
+    let llista = "";
+    while (i <= m && resultat <= 999999) {
+        resultat = n * i;
+        if (llista != "") {
+            llista = llista + ", ";
+        }
+        llista = llista + resultat;
+        i++;
+    }
+    console.log(llista);
+}
+FI EXERCICI 17.5  (esborra aquesta línia per executar-lo) */
+
+
+/* ========================= BUCLES: do-while ========================= */
+
+/* ----- EXERCICI 18.1 -----------------------------------------------
+   Escriu 10 cops "Estem fent bucles" amb do-while.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 18.1  (esborra aquesta línia per executar-lo)
+{
+    let i = 1;
+    do {
+        console.log("Estem fent bucles");
+        i++;
+    } while (i <= 10);
+}
+FI EXERCICI 18.1  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 18.2 -----------------------------------------------
+   Números del 5 al 20. L'enunciat diu "for", però com que és a
+   l'apartat do-while, s'ha fet amb do-while.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 18.2  (esborra aquesta línia per executar-lo)
+{
+    let i = 5;
+    do {
+        console.log(i);
+        i++;
+    } while (i <= 20);
+}
+FI EXERCICI 18.2  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 18.3 -----------------------------------------------
+   Números de N a 1 amb do-while.
+   Què passa si N < 1? S'escriu N una vegada. El do-while sempre fa
+   la primera volta i comprova la condició al final. Aquesta és la
+   diferència amb el for i el while (16.8 i 17.3), que no escriuen res.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 18.3  (esborra aquesta línia per executar-lo)
+{
+    let i = Number(prompt("Introdueix N"));
+    do {
+        console.log(i);
+        i--;
+    } while (i >= 1);
+}
+FI EXERCICI 18.3  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 18.4 -----------------------------------------------
+   Diu si N és primer: només és divisible per 1 i per ell mateix.
+   Es prova de dividir N per tots els números entre 2 i N-1; si algun
+   el divideix exactament (residu 0), no és primer.
+   L'1 i els números més petits no són primers.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 18.4  (esborra aquesta línia per executar-lo)
+{
+    let n = Number(prompt("Introdueix N"));
+    let primer = n > 1;
+    let divisor = 2;
+    while (primer && divisor < n) {
+        if (n % divisor == 0) {
+            primer = false;
+        }
+        divisor++;
+    }
+    if (primer) {
+        console.log(n + " és primer");
+    } else {
+        console.log(n + " no és primer");
+    }
+}
+FI EXERCICI 18.4  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 18.5 -----------------------------------------------
+   Demana 10 números amb do-while i diu quin és el més gran.
+   El primer número es fa servir com a valor inicial del màxim.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 18.5  (esborra aquesta línia per executar-lo)
+{
+    let comptador = 1;
+    let gran;
+    do {
+        let n = Number(prompt("Introdueix el número " + comptador + " de 10"));
+        if (comptador == 1 || n > gran) {
+            gran = n;
+        }
+        comptador++;
+    } while (comptador <= 10);
+    console.log("El més gran és " + gran);
+}
+FI EXERCICI 18.5  (esborra aquesta línia per executar-lo) */
+
+</script>
+</body>
+</html>
