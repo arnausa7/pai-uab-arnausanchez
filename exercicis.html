@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercicis - Programació d'Aplicacions a Internet</title>
+</head>
+<body>
+
+<!--
+    =====================================================================
+    PROGRAMACIÓ D'APLICACIONS A INTERNET (UAB) · Arnau Sánchez
+    =====================================================================
+    Tots els exercicis són en aquest fitxer, cadascun comentat.
+    Per executar-ne un, esborra les dues línies marcades amb
+    "INICI EXERCICI N" i "FI EXERCICI N" (són les que obren i tanquen
+    el comentari) i obre aquest fitxer al navegador.
+    Cada exercici té els estils limitats al seu propi contenidor
+    (#exercici1, #exercici2...), així que no es barregen entre ells.
+    =====================================================================
+-->
+
+
+<!-- ===================== EXERCICI 1: HTML i CSS ======================
+     Rèplica de l'estructura de pixar.com
+     a. Fons blanc, títol a dalt a l'esquerra
+     b. Menú horitzontal superior alineat a la dreta (ressaltat amb :hover)
+     c. Imatges dins de caixes (.caixa)
+     d. Clicar una imatge inferior mostra una "pàgina" amb aquesta imatge
+        com a principal; l'antiga principal ocupa el seu lloc a baix.
+        Les pàgines són seccions (#inici, #careers, #soul, #trailers)
+        que es mostren amb el selector :target.
+     ================================================================== -->
+<!-- INICI EXERCICI 1  (esborra aquesta línia per executar-lo)
+
+<style>
+    /* Fons blanc (a) i estils generals */
+    #exercici1 { max-width: 1000px; margin: 0 auto; padding: 0 20px;
+                 background-color: #ffffff; color: #333333;
+                 font-family: "Helvetica Neue", Arial, sans-serif; }
+    #exercici1 * { box-sizing: border-box; }
+    #exercici1 a { color: inherit; text-decoration: none; }
+
+    /* Cada "pagina" es una seccio: nomes se'n veu una a la vegada.
+       La seccio clicada (:target) es mostra i la d'inici s'amaga. */
+    #exercici1 .pagina { display: none; }
+    #exercici1 .pagina:target { display: block; }
+    #exercici1 #inici { display: block; }
+    #exercici1 .pagina:target ~ #inici { display: none; }
+
+    /* Capcalera: titol a l'esquerra (a) i menu a la dreta (b) */
+    #exercici1 .capcalera { display: flex; justify-content: space-between;
+                            align-items: center; padding: 30px 20px; }
+    #exercici1 .titol { margin: 0; font-family: Georgia, "Times New Roman", serif;
+                        font-size: 26px; font-weight: normal; letter-spacing: 12px; color: #000000; }
+    #exercici1 .menu ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 6px; }
+    #exercici1 .menu a { display: block; padding: 6px 8px; font-size: 12px; letter-spacing: 1px;
+                         text-transform: uppercase; color: #555555;
+                         border-bottom: 2px solid transparent; transition: color 0.2s, border-color 0.2s; }
+    /* Ressaltat dels elements del menu */
+    #exercici1 .menu a:hover, #exercici1 .menu a.actiu { color: #000000; border-bottom-color: #000000; }
+
+    /* Imatges dins de caixes (c) */
+    #exercici1 .caixa { overflow: hidden; }
+    #exercici1 .caixa img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    #exercici1 .principal { height: 380px; margin: 20px 0 60px 0; }
+
+    /* Tres imatges inferiors (d) */
+    #exercici1 .destacats { display: flex; justify-content: space-between; gap: 30px; padding: 0 20px; }
+    #exercici1 .destacat { flex: 1; text-align: center; }
+    #exercici1 .destacat .caixa { height: 180px; transition: transform 0.2s, box-shadow 0.2s; }
+    #exercici1 .destacat a:hover .caixa { transform: translateY(-4px); box-shadow: 0 6px 14px rgba(0, 0, 0, 0.25); }
+    #exercici1 .peu-imatge { margin: 22px 0 0 0; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; }
+    #exercici1 .destacat a:hover .peu-imatge { color: #000000; font-weight: bold; }
+
+    /* Peu de pagina */
+    #exercici1 .peu { margin-top: 60px; padding-bottom: 60px; text-align: center; }
+    #exercici1 .boto-streaming { display: inline-block; margin-bottom: 30px; padding: 10px 22px;
+                                 border: 2px solid #1b3a8c; border-radius: 24px; color: #1b3a8c;
+                                 font-weight: bold; letter-spacing: 1px; }
+    #exercici1 .boto-streaming:hover { background-color: #1b3a8c; color: #ffffff; }
+    #exercici1 .xarxes { list-style: none; margin: 0 0 30px 0; padding: 0;
+                         display: flex; justify-content: center; gap: 14px; }
+    #exercici1 .xarxes a { display: inline-block; width: 30px; height: 30px; line-height: 30px;
+                           border-radius: 50%; background-color: #222222; color: #ffffff;
+                           font-size: 13px; font-weight: bold; }
+    #exercici1 .xarxes a:hover { background-color: #666666; }
+    #exercici1 .enllacos-legals { margin: 6px 0; font-size: 11px; letter-spacing: 3px;
+                                  text-transform: uppercase; color: #777777; }
+    #exercici1 .enllacos-legals a { border-bottom: 1px solid #cccccc; }
+    #exercici1 .enllacos-legals a:hover { color: #000000; border-bottom-color: #000000; }
+    #exercici1 .copyright { margin-top: 16px; font-size: 11px; letter-spacing: 4px; color: #777777; }
+</style>
+
+<div id="exercici1">
+    <section id="careers" class="pagina">
+        <header class="capcalera">
+            <h1 class="titol"><a href="#inici">PIXAR</a></h1>
+            <nav class="menu">
+                <ul>
+                    <li><a href="#">Feature Films</a></li>
+                    <li><a href="#">Short Films</a></li>
+                    <li><a href="#">Technology</a></li>
+                    <li><a href="#careers" class="actiu">Careers</a></li>
+                    <li><a href="#">Extras</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="caixa principal">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%271000%27%20height%3D%27400%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%271%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27%233b8fd6%27/%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27%236cbf4f%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%271000%27%20height%3D%27400%27%20fill%3D%27url%28%23g%29%27/%3E%3Ctext%20x%3D%27500%27%20y%3D%27215%27%20font-family%3D%27Arial%27%20font-size%3D%2744%27%20fill%3D%27white%27%20text-anchor%3D%27middle%27%20letter-spacing%3D%276%27%3ECAREERS%20AT%20PIXAR%3C/text%3E%3C/svg%3E" alt="Careers at Pixar">
+        </div>
+
+        <div class="destacats">
+                <div class="destacat">
+                    <a href="#inici">
+                        <div class="caixa"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%271000%27%20height%3D%27400%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%271%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27%232a1b5e%27/%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27%237a3fa0%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%271000%27%20height%3D%27400%27%20fill%3D%27url%28%23g%29%27/%3E%3Ctext%20x%3D%27500%27%20y%3D%27215%27%20font-family%3D%27Arial%27%20font-size%3D%2744%27%20fill%3D%27white%27%20text-anchor%3D%27middle%27%20letter-spacing%3D%276%27%3EONWARD%3C/text%3E%3C/svg%3E" alt="Imatge principal d'Onward"></div>
+                        <p class="peu-imatge">Onward</p>
+                    </a>
+                </div>
+                <div class="destacat">
+                    <a href="#soul">
+                        <div class="caixa"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%271000%27%20height%3D%27400%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%271%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27%23d98a3a%27/%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27%235a6e8c%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%271000%27%20height%3D%27400%27%20fill%3D%27url%28%23g%29%27/%3E%3Ctext%20x%3D%27500%27%20y%3D%27215%27%20font-family%3D%27Arial%27%20font-size%3D%2744%27%20fill%3D%27white%27%20text-anchor%3D%27middle%27%20letter-spacing%3D%276%27%3ESOUL%3C/text%3E%3C/svg%3E" alt="Soul"></div>
+                        <p class="peu-imatge">Soul</p>
+                    </a>
+                </div>
+                <div class="destacat">
+                    <a href="#trailers">
+                        <div class="caixa"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%271000%27%20height%3D%27400%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%271%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27%231f3a6b%27/%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27%233fa07a%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%271000%27%20height%3D%27400%27%20fill%3D%27url%28%23g%29%27/%3E%3Ctext%20x%3D%27500%27%20y%3D%27215%27%20font-family%3D%27Arial%27%20font-size%3D%2744%27%20fill%3D%27white%27%20text-anchor%3D%27middle%27%20letter-spacing%3D%276%27%3EONWARD%20TRAILERS%3C/text%3E%3C/svg%3E" alt="Onward Trailers"></div>
+                        <p class="peu-imatge">Onward Trailers</p>
+                    </a>
+                </div>
+        </div>
+
+        <footer class="peu">
+            <a class="boto-streaming" href="#">Disney+</a>
+            <ul class="xarxes">
+                <li><a href="#" title="Facebook">f</a></li>
+                <li><a href="#" title="Twitter">t</a></li>
+                <li><a href="#" title="Instagram">i</a></li>
+                <li><a href="#" title="YouTube">&#9654;</a></li>
+            </ul>
+            <p class="enllacos-legals"><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></p>
+            <p class="enllacos-legals"><a href="#">Your California Privacy Rights</a> | <a href="#">Children's Online Privacy Policy</a></p>
+            <p class="enllacos-legals"><a href="#">Interest-Based Ads</a> | <a href="#">Do Not Sell My Info</a></p>
+            <p class="copyright">&copy; 1986-2020 DISNEY / PIXAR</p>
+        </footer>
+    </section>
+
+    <section id="soul" class="pagina">
+        <header class="capcalera">
+            <h1 class="titol"><a href="#inici">PIXAR</a></h1>
+            <nav class="menu">
+                <ul>
+                    <li><a href="#">Feature Films</a></li>
+                    <li><a href="#">Short Films</a></li>
+                    <li><a href="#">Technology</a></li>
+                    <li><a href="#careers">Careers</a></li>
+                    <li><a href="#">Extras</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="caixa principal">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%271000%27%20height%3D%27400%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%271%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27%23d98a3a%27/%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27%235a6e8c%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%271000%27%20height%3D%27400%27%20fill%3D%27url%28%23g%29%27/%3E%3Ctext%20x%3D%27500%27%20y%3D%27215%27%20font-family%3D%27Arial%27%20font-size%3D%2744%27%20fill%3D%27white%27%20text-anchor%3D%27middle%27%20letter-spacing%3D%276%27%3ESOUL%3C/text%3E%3C/svg%3E" alt="Soul">
+        </div>
+
+        <div class="destacats">
+                <div class="destacat">
+                    <a href="#careers">
+                        <div class="caixa"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%271000%27%20height%3D%27400%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%271%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27%233b8fd6%27/%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27%236cbf4f%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%271000%27%20height%3D%27400%27%20fill%3D%27url%28%23g%29%27/%3E%3Ctext%20x%3D%27500%27%20y%3D%27215%27%20font-family%3D%27Arial%27%20font-size%3D%2744%27%20fill%3D%27white%27%20text-anchor%3D%27middle%27%20letter-spacing%3D%276%27%3ECAREERS%20AT%20PIXAR%3C/text%3E%3C/svg%3E" alt="Careers at Pixar"></div>
+                        <p class="peu-imatge">Careers at Pixar</p>
+                    </a>
+                </div>
+                <div class="destacat">
+                    <a href="#inici">
+                        <div class="caixa"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%271000%27%20height%3D%27400%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%271%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27%232a1b5e%27/%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27%237a3fa0%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%271000%27%20height%3D%27400%27%20fill%3D%27url%28%23g%29%27/%3E%3Ctext%20x%3D%27500%27%20y%3D%27215%27%20font-family%3D%27Arial%27%20font-size%3D%2744%27%20fill%3D%27white%27%20text-anchor%3D%27middle%27%20letter-spacing%3D%276%27%3EONWARD%3C/text%3E%3C/svg%3E" alt="Imatge principal d'Onward"></div>
+                        <p class="peu-imatge">Onward</p>
+                    </a>
+                </div>
+                <div class="destacat">
+                    <a href="#trailers">
+                        <div class="caixa"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%271000%27%20height%3D%27400%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%271%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27%231f3a6b%27/%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27%233fa07a%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%271000%27%20height%3D%27400%27%20fill%3D%27url%28%23g%29%27/%3E%3Ctext%20x%3D%27500%27%20y%3D%27215%27%20font-family%3D%27Arial%27%20font-size%3D%2744%27%20fill%3D%27white%27%20text-anchor%3D%27middle%27%20letter-spacing%3D%276%27%3EONWARD%20TRAILERS%3C/text%3E%3C/svg%3E" alt="Onward Trailers"></div>
+                        <p class="peu-imatge">Onward Trailers</p>
+                    </a>
+                </div>
+        </div>
+
+        <footer class="peu">
+            <a class="boto-streaming" href="#">Disney+</a>
+            <ul class="xarxes">
+                <li><a href="#" title="Facebook">f</a></li>
+                <li><a href="#" title="Twitter">t</a></li>
+                <li><a href="#" title="Instagram">i</a></li>
+                <li><a href="#" title="YouTube">&#9654;</a></li>
+            </ul>
+            <p class="enllacos-legals"><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></p>
+            <p class="enllacos-legals"><a href="#">Your California Privacy Rights</a> | <a href="#">Children's Online Privacy Policy</a></p>
+            <p class="enllacos-legals"><a href="#">Interest-Based Ads</a> | <a href="#">Do Not Sell My Info</a></p>
+            <p class="copyright">&copy; 1986-2020 DISNEY / PIXAR</p>
+        </footer>
+    </section>
+
+    <section id="trailers" class="pagina">
+        <header class="capcalera">
+            <h1 class="titol"><a href="#inici">PIXAR</a></h1>
+            <nav class="menu">
+                <ul>
+                    <li><a href="#">Feature Films</a></li>
+                    <li><a href="#">Short Films</a></li>
+                    <li><a href="#">Technology</a></li>
+                    <li><a href="#careers">Careers</a></li>
+                    <li><a href="#">Extras</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="caixa principal">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%271000%27%20height%3D%27400%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%271%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27%231f3a6b%27/%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27%233fa07a%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%271000%27%20height%3D%27400%27%20fill%3D%27url%28%23g%29%27/%3E%3Ctext%20x%3D%27500%27%20y%3D%27215%27%20font-family%3D%27Arial%27%20font-size%3D%2744%27%20fill%3D%27white%27%20text-anchor%3D%27middle%27%20letter-spacing%3D%276%27%3EONWARD%20TRAILERS%3C/text%3E%3C/svg%3E" alt="Onward Trailers">
+        </div>
+
+        <div class="destacats">
+                <div class="destacat">
+                    <a href="#careers">
+                        <div class="caixa"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%271000%27%20height%3D%27400%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%271%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27%233b8fd6%27/%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27%236cbf4f%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%271000%27%20height%3D%27400%27%20fill%3D%27url%28%23g%29%27/%3E%3Ctext%20x%3D%27500%27%20y%3D%27215%27%20font-family%3D%27Arial%27%20font-size%3D%2744%27%20fill%3D%27white%27%20text-anchor%3D%27middle%27%20letter-spacing%3D%276%27%3ECAREERS%20AT%20PIXAR%3C/text%3E%3C/svg%3E" alt="Careers at Pixar"></div>
+                        <p class="peu-imatge">Careers at Pixar</p>
+                    </a>
+                </div>
+                <div class="destacat">
+                    <a href="#soul">
+                        <div class="caixa"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%271000%27%20height%3D%27400%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%271%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27%23d98a3a%27/%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27%235a6e8c%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%271000%27%20height%3D%27400%27%20fill%3D%27url%28%23g%29%27/%3E%3Ctext%20x%3D%27500%27%20y%3D%27215%27%20font-family%3D%27Arial%27%20font-size%3D%2744%27%20fill%3D%27white%27%20text-anchor%3D%27middle%27%20letter-spacing%3D%276%27%3ESOUL%3C/text%3E%3C/svg%3E" alt="Soul"></div>
+                        <p class="peu-imatge">Soul</p>
+                    </a>
+                </div>
+                <div class="destacat">
+                    <a href="#inici">
+                        <div class="caixa"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%271000%27%20height%3D%27400%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%271%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27%232a1b5e%27/%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27%237a3fa0%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%271000%27%20height%3D%27400%27%20fill%3D%27url%28%23g%29%27/%3E%3Ctext%20x%3D%27500%27%20y%3D%27215%27%20font-family%3D%27Arial%27%20font-size%3D%2744%27%20fill%3D%27white%27%20text-anchor%3D%27middle%27%20letter-spacing%3D%276%27%3EONWARD%3C/text%3E%3C/svg%3E" alt="Imatge principal d'Onward"></div>
+                        <p class="peu-imatge">Onward</p>
+                    </a>
+                </div>
+        </div>
+
+        <footer class="peu">
+            <a class="boto-streaming" href="#">Disney+</a>
+            <ul class="xarxes">
+                <li><a href="#" title="Facebook">f</a></li>
+                <li><a href="#" title="Twitter">t</a></li>
+                <li><a href="#" title="Instagram">i</a></li>
+                <li><a href="#" title="YouTube">&#9654;</a></li>
+            </ul>
+            <p class="enllacos-legals"><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></p>
+            <p class="enllacos-legals"><a href="#">Your California Privacy Rights</a> | <a href="#">Children's Online Privacy Policy</a></p>
+            <p class="enllacos-legals"><a href="#">Interest-Based Ads</a> | <a href="#">Do Not Sell My Info</a></p>
+            <p class="copyright">&copy; 1986-2020 DISNEY / PIXAR</p>
+        </footer>
+    </section>
+
+    <section id="inici" class="pagina">
+        <header class="capcalera">
+            <h1 class="titol"><a href="#inici">PIXAR</a></h1>
+            <nav class="menu">
+                <ul>
+                    <li><a href="#">Feature Films</a></li>
+                    <li><a href="#">Short Films</a></li>
+                    <li><a href="#">Technology</a></li>
+                    <li><a href="#careers">Careers</a></li>
+                    <li><a href="#">Extras</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <div class="caixa principal">
+            <img src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%271000%27%20height%3D%27400%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%271%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27%232a1b5e%27/%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27%237a3fa0%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%271000%27%20height%3D%27400%27%20fill%3D%27url%28%23g%29%27/%3E%3Ctext%20x%3D%27500%27%20y%3D%27215%27%20font-family%3D%27Arial%27%20font-size%3D%2744%27%20fill%3D%27white%27%20text-anchor%3D%27middle%27%20letter-spacing%3D%276%27%3EONWARD%3C/text%3E%3C/svg%3E" alt="Imatge principal d'Onward">
+        </div>
+
+        <div class="destacats">
+                <div class="destacat">
+                    <a href="#careers">
+                        <div class="caixa"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%271000%27%20height%3D%27400%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%271%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27%233b8fd6%27/%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27%236cbf4f%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%271000%27%20height%3D%27400%27%20fill%3D%27url%28%23g%29%27/%3E%3Ctext%20x%3D%27500%27%20y%3D%27215%27%20font-family%3D%27Arial%27%20font-size%3D%2744%27%20fill%3D%27white%27%20text-anchor%3D%27middle%27%20letter-spacing%3D%276%27%3ECAREERS%20AT%20PIXAR%3C/text%3E%3C/svg%3E" alt="Careers at Pixar"></div>
+                        <p class="peu-imatge">Careers at Pixar</p>
+                    </a>
+                </div>
+                <div class="destacat">
+                    <a href="#soul">
+                        <div class="caixa"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%271000%27%20height%3D%27400%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%271%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27%23d98a3a%27/%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27%235a6e8c%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%271000%27%20height%3D%27400%27%20fill%3D%27url%28%23g%29%27/%3E%3Ctext%20x%3D%27500%27%20y%3D%27215%27%20font-family%3D%27Arial%27%20font-size%3D%2744%27%20fill%3D%27white%27%20text-anchor%3D%27middle%27%20letter-spacing%3D%276%27%3ESOUL%3C/text%3E%3C/svg%3E" alt="Soul"></div>
+                        <p class="peu-imatge">Soul</p>
+                    </a>
+                </div>
+                <div class="destacat">
+                    <a href="#trailers">
+                        <div class="caixa"><img src="data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A//www.w3.org/2000/svg%27%20width%3D%271000%27%20height%3D%27400%27%3E%3Cdefs%3E%3ClinearGradient%20id%3D%27g%27%20x1%3D%270%27%20y1%3D%270%27%20x2%3D%271%27%20y2%3D%271%27%3E%3Cstop%20offset%3D%270%27%20stop-color%3D%27%231f3a6b%27/%3E%3Cstop%20offset%3D%271%27%20stop-color%3D%27%233fa07a%27/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect%20width%3D%271000%27%20height%3D%27400%27%20fill%3D%27url%28%23g%29%27/%3E%3Ctext%20x%3D%27500%27%20y%3D%27215%27%20font-family%3D%27Arial%27%20font-size%3D%2744%27%20fill%3D%27white%27%20text-anchor%3D%27middle%27%20letter-spacing%3D%276%27%3EONWARD%20TRAILERS%3C/text%3E%3C/svg%3E" alt="Onward Trailers"></div>
+                        <p class="peu-imatge">Onward Trailers</p>
+                    </a>
+                </div>
+        </div>
+
+        <footer class="peu">
+            <a class="boto-streaming" href="#">Disney+</a>
+            <ul class="xarxes">
+                <li><a href="#" title="Facebook">f</a></li>
+                <li><a href="#" title="Twitter">t</a></li>
+                <li><a href="#" title="Instagram">i</a></li>
+                <li><a href="#" title="YouTube">&#9654;</a></li>
+            </ul>
+            <p class="enllacos-legals"><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></p>
+            <p class="enllacos-legals"><a href="#">Your California Privacy Rights</a> | <a href="#">Children's Online Privacy Policy</a></p>
+            <p class="enllacos-legals"><a href="#">Interest-Based Ads</a> | <a href="#">Do Not Sell My Info</a></p>
+            <p class="copyright">&copy; 1986-2020 DISNEY / PIXAR</p>
+        </footer>
+    </section>
+</div>
+
+FI EXERCICI 1  (esborra aquesta línia per executar-lo) -->
+
+
+</body>
+</html>
