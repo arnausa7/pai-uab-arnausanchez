@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <title>Exercicis Introducció al JavaScript - Variables i operadors</title>
+</head>
+<body>
+<h1>Exercicis Introducció al JavaScript</h1>
+<p>Variables i operadors. Els resultats es mostren a la consola del navegador (F12 &rarr; Consola).</p>
+
+<script>
+/*
+    =====================================================================
+    PROGRAMACIÓ D'APLICACIONS A INTERNET (UAB) · Arnau Sánchez
+    Exercicis Introducció al JavaScript: variables i operadors
+    =====================================================================
+    Tots els exercicis són en aquest fitxer, cadascun comentat.
+    Per executar-ne un, esborra les dues línies marcades amb
+    "INICI EXERCICI X.Y" i "FI EXERCICI X.Y" (són les que obren i tanquen
+    el comentari), obre aquest fitxer al navegador i mira la consola (F12).
+    Cada exercici va dins de claus { } perquè les variables d'un
+    exercici no xoquin amb les d'un altre.
+    =====================================================================
+*/
+
+
+/* ============================ VARIABLES ============================ */
+
+/* ----- EXERCICI 1.1 ------------------------------------------------
+   Digues quins d'aquests noms de variables són correctes i quins no.
+
+   Correctes:   variAble, Variable, vari_able, _variable, vari4able,
+                variable4, variable_4, LaMevaVariable
+   Incorrectes: vari-able  -> el guió és l'operador resta
+                vari.able  -> el punt serveix per accedir a propietats
+                4variable  -> un nom no pot començar per un número
+   Regla: un nom pot tenir lletres, números, _ i $, però no pot
+   començar per un número ni contenir espais, guions o punts.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 1.1  (esborra aquesta línia per executar-lo)
+{
+    let variAble = 1;
+    let Variable = 2;
+    // let vari-able = 3;   // ERROR
+    let vari_able = 4;
+    let _variable = 5;
+    // let vari.able = 6;   // ERROR
+    let vari4able = 7;
+    // let 4variable = 8;   // ERROR
+    let variable4 = 9;
+    let variable_4 = 10;
+    let LaMevaVariable = 11;
+    console.log("Noms correctes:", variAble, Variable, vari_able, _variable,
+                vari4able, variable4, variable_4, LaMevaVariable);
+}
+FI EXERCICI 1.1  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 1.2 ------------------------------------------------
+   Quin nom de variable seria el més adient per guardar el nom d'un
+   empleat?
+
+   Resposta: nomEmpleat (opció 4).
+   Segueix la convenció camelCase de JavaScript: comença en minúscula
+   i cada paraula nova comença en majúscula.
+   - "Nom empleat" (opció 10) és incorrecte perquè té un espai.
+   - La resta són vàlids però no segueixen la convenció (majúscula
+     inicial, guió baix o números que no aporten res).
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 1.2  (esborra aquesta línia per executar-lo)
+{
+    let nomEmpleat = "Anna";
+    console.log("Nom de l'empleat:", nomEmpleat);
+}
+FI EXERCICI 1.2  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 2.1 ------------------------------------------------
+   Què passaria si féssim aquestes declaracions de variables?
+   (cada apartat és un bloc separat perquè b, c i d donen error)
+
+   a. Escriu 2. Amb var es pot tornar a declarar la mateixa variable.
+   b. Error: SyntaxError: Identifier 'a' has already been declared
+   c. El mateix error: no es pot declarar amb var una variable que ja
+      s'ha declarat amb let.
+   d. El mateix error: amb let no es pot declarar dues vegades la
+      mateixa variable.
+   En b, c i d no s'escriu res perquè l'error es detecta abans
+   d'executar el codi.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 2.1.a  (esborra aquesta línia per executar-lo)
+{
+    var a = 1;
+    var a = 2;
+    console.log(a);          // 2
+}
+FI EXERCICI 2.1.a  (esborra aquesta línia per executar-lo) */
+
+/* INICI EXERCICI 2.1.b  (esborra aquesta línia per executar-lo)
+{
+    var a = 1;
+    let a = 2;               // SyntaxError
+    console.log(a);
+}
+FI EXERCICI 2.1.b  (esborra aquesta línia per executar-lo) */
+
+/* INICI EXERCICI 2.1.c  (esborra aquesta línia per executar-lo)
+{
+    let a = 1;
+    var a = 2;               // SyntaxError
+    console.log(a);
+}
+FI EXERCICI 2.1.c  (esborra aquesta línia per executar-lo) */
+
+/* INICI EXERCICI 2.1.d  (esborra aquesta línia per executar-lo)
+{
+    let a = 1;
+    let a = 2;               // SyntaxError
+    console.log(a);
+}
+FI EXERCICI 2.1.d  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 3.1 ------------------------------------------------
+   Quines d'aquestes assignacions són correctes i quines no?
+
+   let a = 5;         correcta (número)
+   let b = 5z;        INCORRECTA: 5z no és un número ni una variable
+   let c = "c";       correcta (cadena amb cometes dobles)
+   let c = 'c';       correcta (cadena amb cometes simples)
+   let c = "c'c'c";   correcta (cometes simples dins de dobles)
+   let c = 'c"c"c';   correcta (cometes dobles dins de simples)
+   let n = 35;        correcta (número)
+   let n = 35va;      INCORRECTA: 35va no és un número ni una variable
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 3.1  (esborra aquesta línia per executar-lo)
+{
+    let a = 5;
+    // let b = 5z;          // ERROR
+    let c1 = "c";
+    let c2 = 'c';
+    let c3 = "c'c'c";
+    let c4 = 'c"c"c';
+    let n = 35;
+    // let n2 = 35va;       // ERROR
+    console.log(a, c1, c2, c3, c4, n);
+}
+FI EXERCICI 3.1  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 3.2 ------------------------------------------------
+   Hi ha una línia errònia. Quina és?
+
+   Resposta: let b = c;
+   Quan s'executa aquesta línia, la variable c encara no existeix
+   (s'assigna a la línia següent). El navegador dona l'error:
+   ReferenceError: c is not defined
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 3.2  (esborra aquesta línia per executar-lo)
+{
+    let a = 5;
+    let b = c;               // ReferenceError: c is not defined
+    c = 7;
+}
+FI EXERCICI 3.2  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 3.3 ------------------------------------------------
+   De quins tipus són les dades que assignem a aquestes variables?
+
+   a = 55      -> number (enter)
+   b = 55.5    -> number (decimal; a JS enters i decimals són number)
+   c = "Hola"  -> string
+   d = 'Hola'  -> string
+   e = true    -> boolean
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 3.3  (esborra aquesta línia per executar-lo)
+{
+    let a = 55;
+    let b = 55.5;
+    let c = "Hola";
+    let d = 'Hola';
+    let e = true;
+    console.log(typeof a, typeof b, typeof c, typeof d, typeof e);
+    // number number string string boolean
+}
+FI EXERCICI 3.3  (esborra aquesta línia per executar-lo) */
+
+
+/* ============================ OPERADORS ============================ */
+
+/* ----- EXERCICI 4.1 ------------------------------------------------
+   Resultat: 25 40 80
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 4.1  (esborra aquesta línia per executar-lo)
+{
+    let a = 25;
+    let b = 15 + a;          // 40
+    let c = b * 2;           // 80
+    console.log(a, b, c);
+}
+FI EXERCICI 4.1  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 4.2 ------------------------------------------------
+   Resultat: 42 4 30
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 4.2  (esborra aquesta línia per executar-lo)
+{
+    let a = 10;
+    let b = 20;
+    let c = 5;
+    a = a + 3;               // a = 13
+    b = b + 4 - a;           // b = 20 + 4 - 13 = 11
+    c = a + b + c;           // c = 13 + 11 + 5 = 29
+    a = a + c;               // a = 13 + 29 = 42
+    b = 4;                   // b = 4
+    c = c + 3 - b + 2;       // c = 29 + 3 - 4 + 2 = 30
+    console.log(a, b, c);
+}
+FI EXERCICI 4.2  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 4.3 ------------------------------------------------
+   Resposta: no s'escriu res, perquè el codi no té cap console.log.
+   Els valors finals de les variables són: a = 16, b = 35, c = 62, d = 70.
+   He afegit un console.log al final per comprovar-ho.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 4.3  (esborra aquesta línia per executar-lo)
+{
+    let a = 5;
+    let b = 18;
+    let c = 15;
+    let d = 22;
+    a = a + 10;              // a = 15
+    b = b + 5 - c;           // b = 18 + 5 - 15 = 8
+    c = c + 4 + b;           // c = 15 + 4 + 8 = 27
+    d = d + b + a;           // d = 22 + 8 + 15 = 45
+    a = a + 1;               // a = 16
+    b = b + c;               // b = 8 + 27 = 35
+    c = b + c;               // c = 35 + 27 = 62
+    d = b + b;               // d = 35 + 35 = 70
+    console.log(a, b, c, d); // afegit per comprovar: 16 35 62 70
+}
+FI EXERCICI 4.3  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 4.4 ------------------------------------------------
+   Resultat (una línia per cada console.log): 13, 11, 29, 42, 4, 30
+   La instrucció a = a + 3 agafa el valor que tenia a (10), hi suma 3
+   i guarda el resultat (13) altra vegada a la variable a.
+   Nota: a l'enunciat la línia "b = b + 4 - a" té un signe menys
+   tipogràfic que no és el de JavaScript; aquí s'ha escrit amb el "-"
+   normal perquè funcioni.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 4.4  (esborra aquesta línia per executar-lo)
+{
+    let a = 10
+    let b = 20
+    let c = 5
+    a = a + 3                // abans a valia 10, després val 13
+    console.log(a);          // 13
+    b = b + 4 - a
+    console.log(b);          // 11
+    c = a + b + c
+    console.log(c);          // 29
+    a = a + c
+    console.log(a);          // 42
+    b = 4
+    console.log(b);          // 4
+    c = c + 3 - b + 2
+    console.log(c);          // 30
+}
+FI EXERCICI 4.4  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 4.5 ------------------------------------------------
+   Resultat:
+   15 8 27 45
+   16 35 62 70
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 4.5  (esborra aquesta línia per executar-lo)
+{
+    let a = 5;
+    let b = 18;
+    let c = 15;
+    let d = 22;
+    a = a + 10;
+    b = b + 5 - c;
+    c = c + 4 + b;
+    d = d + b + a;
+    console.log(a, b, c, d); // 15 8 27 45
+
+    a = a + 1;
+    b = b + c;
+    c = b + c;
+    d = b + b;
+    console.log(a, b, c, d); // 16 35 62 70
+}
+FI EXERCICI 4.5  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 4.6 ------------------------------------------------
+   Resultat: 2 50 1
+   El % és el residu de la divisió: 10 / 3 = 3 i en sobra 1.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 4.6  (esborra aquesta línia per executar-lo)
+{
+    let a = 10;
+    let b = 5;
+    let c = a / b;           // 2
+    let d = a * b;           // 50
+    let e = a % 3;           // 1
+    console.log(c, d, e);
+}
+FI EXERCICI 4.6  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 4.7 ------------------------------------------------
+   Resultat: 150 3.3333333333333335
+   La divisió no és exacta i JavaScript mostra tots els decimals
+   (l'últim 5 surt per la manera com l'ordinador guarda els decimals).
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 4.7  (esborra aquesta línia per executar-lo)
+{
+    let a = 10;
+    let b = 5;
+    let c = a * b * 3;       // 150
+    let d = a / 3;           // 3.3333333333333335
+    console.log(c, d);
+}
+FI EXERCICI 4.7  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 5.1 ------------------------------------------------
+   Resultat:
+   6
+   7 6
+   a++ (postincrement) primer retorna el valor i després suma 1.
+   Per això b es queda amb 6 i a passa a valer 7.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 5.1  (esborra aquesta línia per executar-lo)
+{
+    let a = 5;
+    a++;
+    console.log(a);          // 6
+    let b = a++;             // b = 6 i després a = 7
+    console.log(a, b);       // 7 6
+}
+FI EXERCICI 5.1  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 5.2 ------------------------------------------------
+   Resultat:
+   6
+   7 7
+   ++a (preincrement) primer suma 1 i després retorna el valor.
+   Per això b també val 7.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 5.2  (esborra aquesta línia per executar-lo)
+{
+    let a = 5;
+    ++a;
+    console.log(a);          // 6
+    let b = ++a;             // a = 7 i després b = 7
+    console.log(a, b);       // 7 7
+}
+FI EXERCICI 5.2  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 5.3 ------------------------------------------------
+   Resultat:
+   5 5 6
+   5 6 5
+   30 31
+   Explicació:
+   - b = a++  -> b agafa 5 i després a passa a 6.
+     c = a--  -> c agafa 6 i després a torna a 5.
+   - b = ++a  -> a passa a 6 i b agafa 6.
+     c = --a  -> a torna a 5 i c agafa 5.
+   - 25 + a++ -> suma 25 + 5 = 30 (a s'incrementa després).
+     25 + ++a -> a primer passa a 6, i suma 25 + 6 = 31.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 5.3  (esborra aquesta línia per executar-lo)
+{
+    let a = 5;
+    let b = a++;
+    let c = a--;
+    console.log(a, b, c);    // 5 5 6
+
+    a = 5;
+    b = ++a;
+    c = --a;
+    console.log(a, b, c);    // 5 6 5
+
+    a = 5;
+    let d = 25 + a++;
+    a = 5;
+    let e = 25 + ++a;
+    console.log(d, e);       // 30 31
+}
+FI EXERCICI 5.3  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 6.1 ------------------------------------------------
+   Resultat: 15, 75, 70, 14 (una línia cada un)
+   a += 5 és el mateix que a = a + 5 (i igual amb *=, -= i /=).
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 6.1  (esborra aquesta línia per executar-lo)
+{
+    let a = 10;
+    a += 5;
+    console.log(a);          // 15
+    a *= 5;
+    console.log(a);          // 75
+    a -= 5;
+    console.log(a);          // 70
+    a /= 5;
+    console.log(a);          // 14
+}
+FI EXERCICI 6.1  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 7.1 ------------------------------------------------
+   Quines assignacions de cadenes són incorrectes?
+
+   let c = 'Hola";             INCORRECTA: obre amb cometa simple i tanca
+                               amb doble; la cadena no es tanca mai.
+   let e = 'Hola "gramola'";   INCORRECTA: la cadena s'acaba a la segona
+                               cometa simple i la " final en sobra.
+   La resta (a, b i d) són correctes.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 7.1  (esborra aquesta línia per executar-lo)
+{
+    let a = "Hola";
+    let b = 'Hola';
+    // let c = 'Hola";          // ERROR
+    let d = "Hola 'gramola'";
+    // let e = 'Hola "gramola'"; // ERROR
+    console.log(a, b, d);
+}
+FI EXERCICI 7.1  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 7.2 ------------------------------------------------
+   Resultat:
+   HolaAdéu
+   Hola2
+   Amb cadenes, el + les concatena (les enganxa). Si un dels dos és una
+   cadena, el número també es converteix en text.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 7.2  (esborra aquesta línia per executar-lo)
+{
+    let a = "Hola";
+    let b = "Adéu";
+    console.log(a + b);      // HolaAdéu
+    let c = a + 2;
+    console.log(c);          // Hola2
+}
+FI EXERCICI 7.2  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 8.1 ------------------------------------------------
+   Resultat: false true false
+   == compara només el valor (converteix "5" en 5).
+   === compara valor i tipus (5 és number i "5" és string).
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 8.1  (esborra aquesta línia per executar-lo)
+{
+    let a = 5, b = 7;
+    let c = 5, d = "5";
+    let e1 = a == b;         // false
+    let e2 = c == d;         // true
+    let e3 = c === d;        // false
+    console.log(e1, e2, e3);
+}
+FI EXERCICI 8.1  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 8.2 ------------------------------------------------
+   Resultat: false true false
+   true == 1 és cert perquè true es converteix en 1.
+   true === 1 és fals perquè un és boolean i l'altre number.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 8.2  (esborra aquesta línia per executar-lo)
+{
+    let a = true;
+    let b = false;
+    let c1 = true === false; // false
+    let c2 = true == 1;      // true
+    let c3 = true === 1;     // false
+    console.log(c1, c2, c3);
+}
+FI EXERCICI 8.2  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 8.3 ------------------------------------------------
+   Resultat: false true
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 8.3  (esborra aquesta línia per executar-lo)
+{
+    let a = 10;
+    let b = 20;
+    console.log(a > b, a < b);   // false true
+}
+FI EXERCICI 8.3  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 8.4 ------------------------------------------------
+   Resultat: false true false
+   Les cadenes es comparen lletra a lletra pel seu codi:
+   - "Hola" === "hola" és fals: majúscules i minúscules són diferents.
+   - "Hola" < "hola" és cert: la H majúscula (72) va abans que la
+     h minúscula (104).
+   - "Hola" < "Adéu" és fals: la H (72) va després de la A (65).
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 8.4  (esborra aquesta línia per executar-lo)
+{
+    let a = "Hola";
+    let b = "hola";
+    let c = "Adéu";
+    let d1 = a === b;        // false
+    let d2 = a < b;          // true
+    let d3 = a < c;          // false
+    console.log(d1, d2, d3);
+}
+FI EXERCICI 8.4  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 8.5 ------------------------------------------------
+   Resultat: true (i després true, true)
+   Per què: a < b < c s'avalua d'esquerra a dreta.
+   - Primer 9 < 7, que és false.
+   - Després false < 3. Per comparar-ho, false es converteix en 0,
+     i 0 < 3 és true.
+   Per això surt true encara que 9 < 7 < 3 sigui fals en matemàtiques.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 8.5  (esborra aquesta línia per executar-lo)
+{
+    let a = 9;
+    let b = 7;
+    let c = 3;
+    let d = a < b < c;       // (9 < 7) < 3  ->  false < 3  ->  0 < 3  ->  true
+    console.log(d);          // true
+
+    console.log(true == 1);  // true
+    console.log(false == 0); // true
+}
+FI EXERCICI 8.5  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 9.1 ------------------------------------------------
+   Resultat: true, false, false, false, false
+   && (I lògic) només és true si les dues bandes són true.
+   A false && (3 == 4), com que la primera part ja és false, JavaScript
+   ni tan sols avalua la segona (avaluació en curtcircuit).
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 9.1  (esborra aquesta línia per executar-lo)
+{
+    console.log(true && true);       // true
+    console.log(true && false);      // false
+    console.log(false && (3 == 4));  // false
+    console.log(false && true);      // false
+    console.log(false && false);     // false
+}
+FI EXERCICI 9.1  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 9.2 ------------------------------------------------
+   Resultat: false, true, false, true, true
+   || (O lògic) és true si almenys una de les dues bandes és true.
+   Si la primera part ja és true, no avalua la segona.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 9.2  (esborra aquesta línia per executar-lo)
+{
+    console.log(false || false);     // false
+    console.log(false || true);      // true
+    console.log(false || (3 == 4));  // false
+    console.log(true || true);       // true
+    console.log(true || false);      // true
+}
+FI EXERCICI 9.2  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 10.1 -----------------------------------------------
+   Resultat:
+   25
+   4.5 6
+   - a + b * c: primer es fa la multiplicació, 5 + 20 = 25 (no 30).
+   - % és el residu de la divisió: 25 % 10 = 5, i r = 5 + 1 = 6.
+   - c + a / b: primer la divisió, 2 + 2.5 = 4.5.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 10.1  (esborra aquesta línia per executar-lo)
+{
+    let a = 5;
+    let b = 10;
+    let c = 2;
+
+    a = a + b * c;           // 5 + (10 * 2) = 25
+    console.log(a);          // 25
+
+    let r = a % b + 1;       // (25 % 10) + 1 = 6
+    let d = c + a / b;       // 2 + (25 / 10) = 4.5
+    console.log(d, r);       // 4.5 6
+}
+FI EXERCICI 10.1  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 10.2 -----------------------------------------------
+   Resultat: 17 22 -3.5
+   d3 = 5 - (6*2) + (5/2) + (6%5) = 5 - 12 + 2.5 + 1 = -3.5
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 10.2  (esborra aquesta línia per executar-lo)
+{
+    let a = 5;
+    let b = 6;
+    let c = 2;
+    let d1 = a + b * c;                  // 5 + 12 = 17
+    let d2 = (a + b) * c;                // 11 * 2 = 22
+    let d3 = a - b * c + a / c + 6 % 5;  // 5 - 12 + 2.5 + 1 = -3.5
+    console.log(d1, d2, d3);
+}
+FI EXERCICI 10.2  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 10.3 -----------------------------------------------
+   Resultat: true false
+   && té més prioritat que ||, i per tant es fa primer:
+   e1 = (false && false) || true  = false || true  = true
+   e2 = false || (false && true)  = false || false = false
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 10.3  (esborra aquesta línia per executar-lo)
+{
+    let e1 = false && false || true;
+    let e2 = false || false && true;
+    console.log(e1, e2);     // true false
+}
+FI EXERCICI 10.3  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 10.4 -----------------------------------------------
+   Resultat: true false true true
+   Ordre de prioritat: aritmètics -> comparacions -> && -> ||
+   e1 = (5 > 4) || (5 < 4)  = true || false = true
+   e2 = (5 > 4) && (5 < 4)  = true && false = false
+   e3 = true || false       = true
+   e4 = (5 <= 4 + 1) && (4 - 1 * 5 < 0)
+      = (5 <= 5) && (4 - 5 < 0)
+      = true && (-1 < 0)
+      = true && true        = true
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 10.4  (esborra aquesta línia per executar-lo)
+{
+    let a = 5;
+    let b = 4;
+    let e1 = a > b || a < b;
+    let e2 = a > b && a < b;
+    let e3 = e1 || e2;
+    let e4 = a <= b + 1 && b - 1 * 5 < 0;
+    console.log(e1, e2, e3, e4);    // true false true true
+}
+FI EXERCICI 10.4  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 11.1 -----------------------------------------------
+   Explica el que fa aquest programa.
+
+   Demana un número amb una finestra (prompt) i el guarda a la
+   variable a. Després, amb l'operador interrogant (condició ? si : no),
+   mira si a és més gran o igual que 18:
+   - si ho és, guarda a b "Ets major d'edat";
+   - si no, guarda a b "No ets major d'edat".
+   Finalment escriu b a la consola.
+   (prompt retorna text, però en comparar-lo amb >= JavaScript el
+   converteix en número.)
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 11.1  (esborra aquesta línia per executar-lo)
+{
+    let a = prompt("Introdueix un número");
+    let b = (a >= 18) ? "Ets major d'edat" : "No ets major d'edat";
+    console.log(b);
+}
+FI EXERCICI 11.1  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 11.2 -----------------------------------------------
+   Programa que demana dos números i escriu quin és el més gran,
+   fent servir l'operador interrogant.
+   Number() converteix el text del prompt en número; si no, "9" > "10"
+   seria cert perquè es compararien com a text.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 11.2  (esborra aquesta línia per executar-lo)
+{
+    let n1 = Number(prompt("Introdueix el primer número"));
+    let n2 = Number(prompt("Introdueix el segon número"));
+    let gran = (n1 > n2) ? n1 : n2;
+    console.log("El número més gran és " + gran);
+}
+FI EXERCICI 11.2  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 11.3 -----------------------------------------------
+   Programa que demana dues paraules i diu si són iguals.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 11.3  (esborra aquesta línia per executar-lo)
+{
+    let p1 = prompt("Introdueix la primera paraula");
+    let p2 = prompt("Introdueix la segona paraula");
+    let resultat = (p1 === p2) ? "Les dues paraules són iguals"
+                               : "Les dues paraules són diferents";
+    console.log(resultat);
+}
+FI EXERCICI 11.3  (esborra aquesta línia per executar-lo) */
+
+
+/* ============================ PROBLEMES ============================ */
+
+/* ----- EXERCICI 12.1 -----------------------------------------------
+   Demana un número i escriu el doble, el triple i el quadrat.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 12.1  (esborra aquesta línia per executar-lo)
+{
+    let n = Number(prompt("Introdueix un número"));
+    console.log("Doble: " + (n * 2));
+    console.log("Triple: " + (n * 3));
+    console.log("Quadrat: " + (n * n));
+}
+FI EXERCICI 12.1  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 12.2 -----------------------------------------------
+   Perímetre i àrea d'un rectangle de 20 i 80 metres.
+   Primera versió amb valors fixos (perímetre 200 m, àrea 1600 m2)
+   i segona versió demanant els costats amb prompt().
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 12.2  (esborra aquesta línia per executar-lo)
+{
+    // Versió 1: valors fixos
+    let costat1 = 20;
+    let costat2 = 80;
+    let perimetre = 2 * costat1 + 2 * costat2;
+    let area = costat1 * costat2;
+    console.log("Perímetre: " + perimetre + " m");   // 200 m
+    console.log("Àrea: " + area + " m2");            // 1600 m2
+
+    // Versió 2: valors demanats amb prompt()
+    let c1 = Number(prompt("Introdueix el primer costat (m)"));
+    let c2 = Number(prompt("Introdueix el segon costat (m)"));
+    console.log("Perímetre: " + (2 * c1 + 2 * c2) + " m");
+    console.log("Àrea: " + (c1 * c2) + " m2");
+}
+FI EXERCICI 12.2  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 12.3 -----------------------------------------------
+   Longitud de la circumferència i àrea del cercle a partir del radi.
+   Fa servir una constant per al número pi.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 12.3  (esborra aquesta línia per executar-lo)
+{
+    const PI = 3.141593;
+    let radi = Number(prompt("Introdueix el radi"));
+    let longitud = 2 * PI * radi;
+    let area = PI * radi ** 2;               // radi ** 2 és radi al quadrat
+    console.log("Longitud de la circumferència: " + longitud);
+    console.log("Àrea del cercle: " + area);
+}
+FI EXERCICI 12.3  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 12.4 -----------------------------------------------
+   Sou mensual a partir de les hores treballades i el preu per hora.
+   Amb 160 hores i 12 euros/hora: 1920 euros.
+   Per provar altres valors, només cal canviar les dues variables.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 12.4  (esborra aquesta línia per executar-lo)
+{
+    let hores = 160;
+    let preuHora = 12;
+    let sou = hores * preuHora;
+    console.log("Sou mensual: " + sou + " €");      // 1920 €
+
+    // Prova amb altres valors
+    hores = 120;
+    preuHora = 15;
+    sou = hores * preuHora;
+    console.log("Sou mensual: " + sou + " €");      // 1800 €
+}
+FI EXERCICI 12.4  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 12.5 -----------------------------------------------
+   Intercanvia els valors de x i y fent servir una variable auxiliar.
+   Inici: x = "Hola", y = 3   ->   Final: x = 3, y = "Hola"
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 12.5  (esborra aquesta línia per executar-lo)
+{
+    let x = "Hola", y = 3;
+    console.log("Abans:  x =", x, " y =", y);
+    let aux = x;             // guardem x perquè no es perdi
+    x = y;
+    y = aux;
+    console.log("Després: x =", x, " y =", y);   // x = 3  y = Hola
+}
+FI EXERCICI 12.5  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 12.6 -----------------------------------------------
+   Escriu el cub d'un número llegit per teclat.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 12.6  (esborra aquesta línia per executar-lo)
+{
+    let n = Number(prompt("Introdueix un número"));
+    console.log("El cub de " + n + " és " + (n * n * n));
+}
+FI EXERCICI 12.6  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 12.7 -----------------------------------------------
+   Programa d'una sola línia que mostra un alert amb "Hello World".
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 12.7  (esborra aquesta línia per executar-lo)
+alert("Hello World");
+FI EXERCICI 12.7  (esborra aquesta línia per executar-lo) */
+
+
+/* ----- EXERCICI 12.8 -----------------------------------------------
+   Programa de dues línies que demana el nom i saluda a la consola.
+   ------------------------------------------------------------------- */
+/* INICI EXERCICI 12.8  (esborra aquesta línia per executar-lo)
+let nomUsuari = prompt("Com et dius?");
+console.log("Hola " + nomUsuari);
+FI EXERCICI 12.8  (esborra aquesta línia per executar-lo) */
+
+</script>
+</body>
+</html>
